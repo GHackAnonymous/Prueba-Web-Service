@@ -40,7 +40,6 @@ public class Registro extends HttpServlet {
             out.println("<title>Servlet Registro</title>");            
             out.println("</head>");
             out.println("<body>");
-            //out.println("<h1>Servlet Registro at " + request.getContextPath() + "</h1>");
             out.println("El nonbre es: "+request.getParameter("nombre")+"<br>");
             out.println("El apellido es: "+request.getParameter("apellidos")+"<br>");
             out.println("</body>");
