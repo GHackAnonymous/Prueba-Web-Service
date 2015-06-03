@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author futpilari
  */
-@WebServlet(urlPatterns = {"/Registro"})
 public class Registro extends HttpServlet {
 
     /**
