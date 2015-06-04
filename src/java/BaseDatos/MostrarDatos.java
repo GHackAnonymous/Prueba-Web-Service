@@ -1,24 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package BaseDatos;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author futpilari
+ */
 public class MostrarDatos extends HttpServlet {
-    
-    private final ConexionBD objConexionBD = new ConexionBD();
-    private Statement conexion = objConexionBD.Conectar();
-    private ResultSet resultado = null;
-    private Querys query = new Querys();
-            
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,29 +38,6 @@ public class MostrarDatos extends HttpServlet {
             out.println("<title>Servlet MostrarDatos</title>");            
             out.println("</head>");
             out.println("<body>");
-            
-            String strSql = query.ConsultarTablaDatos();
-            
-            try {   
-                resultado = objConexionBD.consultarTabla(conexion, strSql);
-            } catch (Exception ex) {
-                out.println("Error a la hora de consultar la base de datos");
-            } 
-            
-            try {
-                out.println("<ul>");
-                while (resultado.next()) {
-                    out.println("<li>");
-                    out.println("Nombre: " + resultado.getString("nombre")
-                            + "<br> Apellido: " + resultado.getInt("apellido")
-                            + "<br> Email: "+ resultado.getInt("email")); 
-                    out.println("</li>");
-                }
-                out.println("</ul>");
-            } catch (SQLException ex) {
-                Logger.getLogger(MostrarDatos.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
             out.println("<h1>Servlet MostrarDatos at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
