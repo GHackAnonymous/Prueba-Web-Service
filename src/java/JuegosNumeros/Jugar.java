@@ -7,6 +7,7 @@ package JuegosNumeros;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author futpilari
  */
 public class Jugar extends HttpServlet {
-
+    int numeroAdivinar = intRandom();
+    int intentos = 0;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,7 +40,27 @@ public class Jugar extends HttpServlet {
             out.println("<title>Servlet Jugar</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Jugar at " + request.getContextPath() + "</h1>");
+            int nuemroUsuario = Integer.parseInt(request.getParameter("numero"));
+            if(numeroAdivinar < nuemroUsuario){
+                out.println("El numero "+nuemroUsuario+" es menor<br>");
+                
+                intentos++;
+                
+                out.println("<a href=\"./Juegos/JuegoNumeros.html\">Reintertar</a><br>");
+            }else if(numeroAdivinar > nuemroUsuario){
+                out.println("El numero "+nuemroUsuario+" es mayor<br>");
+                
+                intentos++;
+                
+                out.println("<a href=\"./Juegos/JuegoNumeros.html\">Reintertar</a><br>");
+            }else if(numeroAdivinar == nuemroUsuario){
+                out.println("<h1>¡¡¡¡GANADOR!!!!</h1><br><br><br>");
+                out.println("El numero "+nuemroUsuario+" es igual que el numero:"+numeroAdivinar+"<br>");
+                out.println("Numero de intentos realizados: "+intentos+"<br>");
+                numeroAdivinar = intRandom();
+                intentos = 0;
+                out.println("<a href=\"./Juegos/JuegoNumeros.html\">Jugar de Nuevo</a><br>");
+            }
             out.println("</body>");
             out.println("</html>");
         }
@@ -82,5 +104,10 @@ public class Jugar extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    public int intRandom(){
+        Random rand = new Random();
+        return rand.nextInt(100);
+    }
 
 }
