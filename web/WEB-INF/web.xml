@@ -8,6 +8,10 @@
         <servlet-name>Jugar</servlet-name>
         <servlet-class>JuegosNumeros.Jugar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MostrarDatos</servlet-name>
+        <servlet-class>BaseDatos.MostrarDatos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
@@ -15,5 +19,9 @@
     <servlet-mapping>
         <servlet-name>Jugar</servlet-name>
         <url-pattern>/Jugar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarDatos</servlet-name>
+        <url-pattern>/MostrarDatos</url-pattern>
     </servlet-mapping>
 </web-app>
