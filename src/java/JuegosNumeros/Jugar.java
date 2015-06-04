@@ -40,22 +40,22 @@ public class Jugar extends HttpServlet {
             out.println("<title>Servlet Jugar</title>");            
             out.println("</head>");
             out.println("<body>");
-            int nuemroUsuario = Integer.parseInt(request.getParameter("numero"));
-            if(numeroAdivinar < nuemroUsuario){
-                out.println("El numero "+nuemroUsuario+" es menor<br>");
+            int numeroUsuario = Integer.parseInt(request.getParameter("numero"));
+            if(numeroAdivinar < numeroUsuario){
+                out.println("El numero "+numeroUsuario+" es menor<br>");
                 
                 intentos++;
                 
                 out.println("<a href=\"./Juegos/JuegoNumeros.html\">Reintertar</a><br>");
-            }else if(numeroAdivinar > nuemroUsuario){
-                out.println("El numero "+nuemroUsuario+" es mayor<br>");
+            }else if(numeroAdivinar > numeroUsuario){
+                out.println("El numero "+numeroUsuario+" es mayor<br>");
                 
                 intentos++;
                 
                 out.println("<a href=\"./Juegos/JuegoNumeros.html\">Reintertar</a><br>");
-            }else if(numeroAdivinar == nuemroUsuario){
+            }else if(numeroAdivinar == numeroUsuario){
                 out.println("<h1>¡¡¡¡GANADOR!!!!</h1><br><br><br>");
-                out.println("El numero "+nuemroUsuario+" es igual que el numero:"+numeroAdivinar+"<br>");
+                out.println("El numero "+numeroUsuario+" es igual que el numero:"+numeroAdivinar+"<br>");
                 out.println("Numero de intentos realizados: "+intentos+"<br>");
                 numeroAdivinar = intRandom();
                 intentos = 0;
