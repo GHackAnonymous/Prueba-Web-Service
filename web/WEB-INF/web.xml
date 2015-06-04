@@ -4,8 +4,16 @@
         <servlet-name>Registro</servlet-name>
         <servlet-class>Registro.Registro</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Jugar</servlet-name>
+        <servlet-class>JuegosNumeros.Jugar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Jugar</servlet-name>
+        <url-pattern>/Jugar</url-pattern>
     </servlet-mapping>
 </web-app>
