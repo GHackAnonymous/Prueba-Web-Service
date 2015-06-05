@@ -21,11 +21,11 @@ public class ConexionBD {
         try {
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-            } catch (InstantiationException ex) {Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, "INSTACE", ex);
+            } catch (IllegalAccessException ex) {Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, "Ilegal Access", ex);
             }
             if(!clave.equalsIgnoreCase("")){
-                conexion = DriverManager.getConnection("jdbc:derby://localhost:1527/HOLAJDBC", usuario,clave); 
+                conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/webserviceprueba1", usuario,clave); 
                 statment = conexion.createStatement();
 
                 return statment;

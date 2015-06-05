@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MostrarDatos extends HttpServlet {
     
-    private final ConexionBD objConexionBD = new ConexionBD();
-    private Statement conexion = objConexionBD.Conectar();
+    private ConexionBD objConexionBD = null;
+    private Statement conexion = null;
     private ResultSet resultado = null;
     private Querys query = new Querys();
             
@@ -33,6 +33,10 @@ public class MostrarDatos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
+            objConexionBD = new ConexionBD();
+            conexion = objConexionBD.Conectar();
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
