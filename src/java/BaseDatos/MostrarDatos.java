@@ -40,21 +40,24 @@ public class MostrarDatos extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MostrarDatos</title>");            
+            //out.println("<title>Servlet MostrarDatos</title>");            
             out.println("</head>");
             out.println("<body>");
             
             String strSql = query.ConsultarTablaDatos();
             
             try {   
+                out.println("Consultar la base de datos... <br>");
                 resultado = objConexionBD.consultarTabla(conexion, strSql);
             } catch (Exception ex) {
-                out.println("Error a la hora de consultar la base de datos");
+                out.println("Error a la hora de consultar la base de datos <br>");
             } 
             
             try {
+                out.println("Escribiendo en pantalla... <br>");
                 out.println("<ul>");
                 while (resultado.next()) {
+                    out.println("Entro el en el buble <br>");
                     out.println("<li>");
                     out.println("Nombre: " + resultado.getString("nombre")
                             + "<br> Apellido: " + resultado.getInt("apellido")
@@ -66,7 +69,7 @@ public class MostrarDatos extends HttpServlet {
                 Logger.getLogger(MostrarDatos.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            out.println("<h1>Servlet MostrarDatos at " + request.getContextPath() + "</h1>");
+            //out.println("<h1>Servlet MostrarDatos at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
