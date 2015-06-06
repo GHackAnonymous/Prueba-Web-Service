@@ -43,12 +43,14 @@ public class MostrarDatos extends HttpServlet {
             //out.println("<title>Servlet MostrarDatos</title>");            
             out.println("</head>");
             out.println("<body>");
-            
+            out.println("Genero la query... <br>");
             String strSql = query.ConsultarTablaDatos();
+            out.println("Query: "+strSql+"<br>");
             
             try {   
                 out.println("Consultar la base de datos... <br>");
                 resultado = objConexionBD.consultarTabla(conexion, strSql);
+                out.println("Resultado: "+resultado+"<br>");
             } catch (Exception ex) {
                 out.println("Error a la hora de consultar la base de datos <br>");
             } 
@@ -60,8 +62,8 @@ public class MostrarDatos extends HttpServlet {
                     out.println("Entro el en el buble <br>");
                     out.println("<li>");
                     out.println("Nombre: " + resultado.getString("nombre")
-                            + "<br> Apellido: " + resultado.getInt("apellido")
-                            + "<br> Email: "+ resultado.getInt("email")); 
+                            + "<br> Apellido: " + resultado.getString("apellido")
+                            + "<br> Email: "+ resultado.getString("email")); 
                     out.println("</li>");
                 }
                 out.println("</ul>");
