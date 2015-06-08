@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package BaseDatos;
 
 import java.io.IOException;
@@ -12,13 +17,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class MostrarDatos extends HttpServlet {
-    
+/**
+ *
+ * @author ghackanonymous
+ */
+public class InsertarUsuario extends HttpServlet {
+
     private ConexionBD objConexionBD = null;
     private Statement conexion = null;
-    private ResultSet resultado = null;
+    private int resultado;
     private Querys query = new Querys();
-            
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,45 +46,37 @@ public class MostrarDatos extends HttpServlet {
             objConexionBD = new ConexionBD();
             conexion = objConexionBD.Conectar();
             
+            String strSql = query.InsertarUsuarioTablaDatos(request.getParameter("nombre"), request.getParameter("apellido"), request.getParameter("password"), request.getParameter("email"));
+            
+            try {
+                resultado = objConexionBD.InsertarUsuario(conexion, strSql);
+            } catch (SQLException ex) {
+                Logger.getLogger(InsertarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            //out.println("<title>Servlet MostrarDatos</title>");            
+            out.println("<title>Servlet InsertarUsuario</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("Genero la query... <br>");
-            String strSql = query.ConsultarTablaDatos();
-            out.println("Query: "+strSql+"<br>");
             
-            try {   
-                out.println("Consultar la base de datos... <br>");
-                resultado = objConexionBD.consultarTabla(conexion, strSql);
-                out.println("Resultado: "+resultado+"<br>");
-            } catch (Exception ex) {
-                out.println("Error a la hora de consultar la base de datos <br>");
-            } 
-            
-            try {
-                out.println("Escribiendo en pantalla... <br>");
-                out.println("<ul>");
-                while (resultado.next()) {
-                    out.println("Entro el en el buble <br>");
-                    out.println("<li>");
-                    out.println("Nombre: " + resultado.getString("nombre")
-                            + "<br> Apellido: " + resultado.getString("apellido")
-                            + "<br> Email: "+ resultado.getString("email")); 
-                    out.println("</li>");
-                }
-                out.println("</ul>");
-            } catch (SQLException ex) {
-                Logger.getLogger(MostrarDatos.class.getName()).log(Level.SEVERE, null, ex);
+            switch(resultado){
+                case -1:
+                    out.println("No se se ha podido ejecutar la solicitud a la base de datos.<br>");
+                break;
+                case 0:
+                    out.println("No hay resultado, la sentecia ejecutada no a realizado ningun cambio.<br>");
+                break;
+                case 1:
+                    out.println("Se ha realizado una inserción en la base de datos.<br>");
+                break;
+                default:
+                    out.println("Error<br>");
+                break;
             }
             
-            //out.println("<h1>Servlet MostrarDatos at " + request.getContextPath() + "</h1>");
-            
-            out.println("<form method=\"get\" action=\"./BaseDatos/InsertarDatos.html\" name=\"insertar\">");
-            out.println("<button>Insertar Usuario</button>");
-            out.println("</form>");
+            out.println("<a href=\"./MostrarDatos\">Ver Todos Los Usuarios</a><br>");
             
             out.println("</body>");
             out.println("</html>");

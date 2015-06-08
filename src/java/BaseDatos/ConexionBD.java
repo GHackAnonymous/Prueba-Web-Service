@@ -51,12 +51,27 @@ public class ConexionBD {
         } 
     }
     
+    public void Desconectar(){
+        statment = null;
+        conexion = null;
+    }
+    
     public ResultSet consultarTabla(Statement conexion, String strSql) throws SQLException{
     
         ResultSet resultado = null;
         
         synchronized(conexion){
             resultado = conexion.executeQuery(strSql);
+        }
+        return resultado;
+    }
+    
+    public int InsertarUsuario(Statement conexion, String strSql) throws SQLException{
+    
+        int resultado = -1;
+        
+        synchronized(conexion){
+            resultado = conexion.executeUpdate(strSql);
         }
         return resultado;
     }
