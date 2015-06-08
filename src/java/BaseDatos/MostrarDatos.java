@@ -40,15 +40,13 @@ public class MostrarDatos extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            //out.println("<title>Servlet MostrarDatos</title>");            
+            out.println("<title>Servlet MostrarDatos</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("Genero la query... <br>");
             String strSql = query.ConsultarTablaDatos();
-            out.println("Query: "+strSql+"<br>");
             
             try {   
-                out.println("Consultar la base de datos... <br>");
                 resultado = objConexionBD.consultarTabla(conexion, strSql);
                 out.println("Resultado: "+resultado+"<br>");
             } catch (Exception ex) {
@@ -56,10 +54,8 @@ public class MostrarDatos extends HttpServlet {
             } 
             
             try {
-                out.println("Escribiendo en pantalla... <br>");
                 out.println("<ul>");
                 while (resultado.next()) {
-                    out.println("Entro el en el buble <br>");
                     out.println("<li>");
                     out.println("Nombre: " + resultado.getString("nombre")
                             + "<br> Apellido: " + resultado.getString("apellido")
@@ -76,7 +72,6 @@ public class MostrarDatos extends HttpServlet {
             out.println("<form method=\"get\" action=\"./BaseDatos/InsertarDatos.html\" name=\"insertar\">");
             out.println("<button>Insertar Usuario</button>");
             out.println("</form>");
-            
             out.println("</body>");
             out.println("</html>");
         }
