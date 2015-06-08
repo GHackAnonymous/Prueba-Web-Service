@@ -1,7 +1,15 @@
-package BaseDatos;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Sesiones;
 
+import BaseDatos.ConexionBD;
+import BaseDatos.Querys;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,14 +19,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
 
-public class MostrarDatos extends HttpServlet {
-    
-    private ConexionBD objConexionBD = null;
-    private Statement conexion = null;
-    private ResultSet resultado = null;
+/**
+ *
+ * @author futpilari
+ */
+public class Sesion extends HttpServlet implements HttpSessionListener{
+
     private Querys query = new Querys();
-            
+    private ConexionBD conexionBD = new ConexionBD();
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -28,48 +41,29 @@ public class MostrarDatos extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    private HttpServletRequest request; 
+    private boolean sesion = false;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
-            objConexionBD = new ConexionBD();
-            conexion = objConexionBD.Conectar();
+            this.request = request;
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MostrarDatos</title>");            
+            out.println("<title>Servlet Sesion</title>");            
             out.println("</head>");
             out.println("<body>");
-            String strSql = query.ConsultarTablaDatos();
-            
-            try {   
-                resultado = objConexionBD.consultarQuery(conexion, strSql);
-            } catch (Exception ex) {
-                out.println("Error a la hora de consultar la base de datos <br>");
-            } 
-            
-            try {
-                out.println("<ul>");
-                while (resultado.next()) {
-                    out.println("<li>");
-                    out.println("Nombre: " + resultado.getString("nombre")
-                            + "<br> Apellido: " + resultado.getString("apellido")
-                            + "<br> Email: "+ resultado.getString("email")); 
-                    out.println("</li>");
-                }
-                out.println("</ul>");
-            } catch (SQLException ex) {
-                Logger.getLogger(MostrarDatos.class.getName()).log(Level.SEVERE, null, ex);
+            if(sesion == true){
+                out.println("Sesion iniciada");
+            }else{
+                out.println("Sesion fallida");
             }
-            
-            //out.println("<h1>Servlet MostrarDatos at " + request.getContextPath() + "</h1>");
-            
-            out.println("<form method=\"get\" action=\"./BaseDatos/InsertarDatos.html\" name=\"insertar\">");
-            out.println("<button>Insertar Usuario</button>");
-            out.println("</form>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -113,5 +107,34 @@ public class MostrarDatos extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    public void sessionCreated(HttpSessionEvent se) {
+        
+        Statement conexion = conexionBD.Conectar();
+        String strSql = query.ConsultarUsuario(this.request.getParameter("nombre"), this.request.getParameter("password"));
+        
+        ResultSet result = null;
+        try {
+            result = conexionBD.consultarQuery(conexion, strSql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Sesion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(result != null){
+            HttpSession session = se.getSession();
+            System.out.print("A las " + getTime() + " se creo la sesion con ID: " +
+            session.getId() + " MaxInactiveInterval=" +
+            session.getMaxInactiveInterval());
+            sesion = true;
+        }
+    }
+    public void sessionDestroyed(HttpSessionEvent se) {
+        HttpSession session = se.getSession();
+        System.out.println("A las " + getTime() + " se destruyo la sesion con ID: "
+        + session.getId());
+        sesion = false;
+    }
+    private String getTime() {
+        return new Date(System.currentTimeMillis()).toString();
+    } 
 
 }

@@ -32,6 +32,18 @@ public class Querys {
         return sql;
     }
     
+    public String ConsultarUsuario(String nombre, String password){
+        String sql = "";
+        
+        sql = sql + " SELECT ";
+        sql = sql + " `tabla_datos`.`nombre`, `tabla_datos`.`password`,";
+        sql = sql + " FROM `webserviceprueba1`.`tabla_datos`";
+        sql = sql + " WHERE nombre = '"+nombre+"' AND";
+        sql = sql + " password = '"+password+"';";
+        
+        return sql;
+    }
+    
 }
 
     

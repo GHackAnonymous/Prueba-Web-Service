@@ -56,7 +56,7 @@ public class ConexionBD {
         conexion = null;
     }
     
-    public ResultSet consultarTabla(Statement conexion, String strSql) throws SQLException{
+    public ResultSet consultarQuery(Statement conexion, String strSql) throws SQLException{
     
         ResultSet resultado = null;
         
@@ -75,4 +75,6 @@ public class ConexionBD {
         }
         return resultado;
     }
+    
+    
 }
