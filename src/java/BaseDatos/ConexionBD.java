@@ -14,7 +14,7 @@ public class ConexionBD {
     private Connection conexion = null; 
     
     private String usuario = "root";
-    private String clave = "Siteco"; //Pon el usuario y el password de tu base de datos
+    private String clave = "siteco"; //Pon el usuario y el password de tu base de datos
     
     public Statement Conectar(){
         
