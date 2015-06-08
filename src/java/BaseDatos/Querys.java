@@ -22,6 +22,16 @@ public class Querys {
         return sql;
     }
     
+    public String InsertarUsuarioTablaDatos(String nombre, String apellido, String password, String email){
+        String sql = "";
+        
+        sql = sql + " INSERT INTO `webserviceprueba1`.`tabla_datos` ";
+        sql = sql + " (`nombre`,`apellido`,`password`,`email`)";
+        sql = sql + " VALUES('"+nombre+"','"+apellido+"','"+password+"','"+email+"');";
+        
+        return sql;
+    }
+    
 }
 
     
