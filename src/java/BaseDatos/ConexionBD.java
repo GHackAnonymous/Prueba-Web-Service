@@ -57,12 +57,16 @@ public class ConexionBD {
     }
     
     public ResultSet consultarQuery(Statement conexion, String strSql) throws SQLException{
-    
-        ResultSet resultado = null;
         
+        System.out.println("ConxionBD: 1");
+        ResultSet resultado = null;
+        System.out.println("ConxionBD: 2");
         synchronized(conexion){
+            System.out.println("ConxionBD: 3");
             resultado = conexion.executeQuery(strSql);
+            System.out.println("ConxionBD: 4");
         }
+        System.out.println("ConxionBD: 5");
         return resultado;
     }
     

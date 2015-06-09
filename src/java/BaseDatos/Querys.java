@@ -36,7 +36,7 @@ public class Querys {
         String sql = "";
         
         sql = sql + " SELECT ";
-        sql = sql + " `tabla_datos`.`nombre`, `tabla_datos`.`password`,";
+        sql = sql + " `tabla_datos`.`nombre`, `tabla_datos`.`password`";
         sql = sql + " FROM `webserviceprueba1`.`tabla_datos`";
         sql = sql + " WHERE nombre = '"+nombre+"' AND";
         sql = sql + " password = '"+password+"';";
