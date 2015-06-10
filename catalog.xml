@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Documents%20and%20Settings/futpilari/Escritorio/GitBucket/WebService/Prueba1/web/WEB-INF/WSDL/NewWebService.wsdl" uri="src/conf/xml-resources/web-service-references/NewWebService/wsdl/NewWebService.wsdl"/>
+    <system systemId="file:/C:/Documents%20and%20Settings/futpilari/Escritorio/GitBucket/WebService/Prueba1/web/WEB-INF/WSDL/NewWebService_schema1.xsd" uri="src/conf/xml-resources/web-service-references/NewWebService/wsdl/NewWebService_schema1.xsd"/>
+    <system systemId="http://localhost:8080/Prueba1Servidor/RecibirMensaje?wsdl" uri="src/conf/xml-resources/web-service-references/RecibirMensaje/wsdl/localhost_8080/Prueba1Servidor/RecibirMensaje.wsdl"/>
+    <system systemId="http://localhost:8080/Prueba1Servidor/RecibirMensaje?xsd=1" uri="src/conf/xml-resources/web-service-references/RecibirMensaje/wsdl/localhost_8080/Prueba1Servidor/RecibirMensaje.xsd_1.xsd"/>
+</catalog>

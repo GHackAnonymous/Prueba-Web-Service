@@ -28,6 +28,10 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>Sesiones.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EnvioMensaje</servlet-name>
+        <servlet-class>EnvioMensaje.EnvioMensaje</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
@@ -47,5 +51,9 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EnvioMensaje</servlet-name>
+        <url-pattern>/EnvioMensaje</url-pattern>
     </servlet-mapping>
 </web-app>
