@@ -26,7 +26,9 @@ public class ObjectFactory {
 
     private final static QName _Hello_QNAME = new QName("http://Mensaje/", "hello");
     private final static QName _Operation_QNAME = new QName("http://Mensaje/", "operation");
+    private final static QName _OperacionBDResponse_QNAME = new QName("http://Mensaje/", "OperacionBDResponse");
     private final static QName _HelloResponse_QNAME = new QName("http://Mensaje/", "helloResponse");
+    private final static QName _OperacionBD_QNAME = new QName("http://Mensaje/", "OperacionBD");
     private final static QName _OperationResponse_QNAME = new QName("http://Mensaje/", "operationResponse");
 
     /**
@@ -53,6 +55,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link OperacionBDResponse }
+     * 
+     */
+    public OperacionBDResponse createOperacionBDResponse() {
+        return new OperacionBDResponse();
+    }
+
+    /**
      * Create an instance of {@link HelloResponse }
      * 
      */
@@ -66,6 +76,14 @@ public class ObjectFactory {
      */
     public OperationResponse createOperationResponse() {
         return new OperationResponse();
+    }
+
+    /**
+     * Create an instance of {@link OperacionBD }
+     * 
+     */
+    public OperacionBD createOperacionBD() {
+        return new OperacionBD();
     }
 
     /**
@@ -87,12 +105,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link OperacionBDResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Mensaje/", name = "OperacionBDResponse")
+    public JAXBElement<OperacionBDResponse> createOperacionBDResponse(OperacionBDResponse value) {
+        return new JAXBElement<OperacionBDResponse>(_OperacionBDResponse_QNAME, OperacionBDResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link HelloResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://Mensaje/", name = "helloResponse")
     public JAXBElement<HelloResponse> createHelloResponse(HelloResponse value) {
         return new JAXBElement<HelloResponse>(_HelloResponse_QNAME, HelloResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link OperacionBD }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Mensaje/", name = "OperacionBD")
+    public JAXBElement<OperacionBD> createOperacionBD(OperacionBD value) {
+        return new JAXBElement<OperacionBD>(_OperacionBD_QNAME, OperacionBD.class, null, value);
     }
 
     /**

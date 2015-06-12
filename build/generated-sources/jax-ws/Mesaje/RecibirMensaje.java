@@ -1,6 +1,7 @@
 
 package Mesaje;
 
+import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -53,5 +54,20 @@ public interface RecibirMensaje {
     public String hello(
         @WebParam(name = "name", targetNamespace = "")
         String name);
+
+    /**
+     * 
+     * @param operacion
+     * @return
+     *     returns java.util.List<java.lang.Object>
+     */
+    @WebMethod(operationName = "OperacionBD")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "OperacionBD", targetNamespace = "http://Mensaje/", className = "Mesaje.OperacionBD")
+    @ResponseWrapper(localName = "OperacionBDResponse", targetNamespace = "http://Mensaje/", className = "Mesaje.OperacionBDResponse")
+    @Action(input = "http://Mensaje/RecibirMensaje/OperacionBDRequest", output = "http://Mensaje/RecibirMensaje/OperacionBDResponse")
+    public List<Object> operacionBD(
+        @WebParam(name = "Operacion", targetNamespace = "")
+        int operacion);
 
 }
