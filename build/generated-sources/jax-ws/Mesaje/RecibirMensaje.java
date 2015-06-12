@@ -59,14 +59,14 @@ public interface RecibirMensaje {
      * 
      * @param operacion
      * @return
-     *     returns java.util.List<java.lang.Object>
+     *     returns java.util.List<Mesaje.Venta>
      */
     @WebMethod(operationName = "OperacionBD")
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "OperacionBD", targetNamespace = "http://Mensaje/", className = "Mesaje.OperacionBD")
     @ResponseWrapper(localName = "OperacionBDResponse", targetNamespace = "http://Mensaje/", className = "Mesaje.OperacionBDResponse")
     @Action(input = "http://Mensaje/RecibirMensaje/OperacionBDRequest", output = "http://Mensaje/RecibirMensaje/OperacionBDResponse")
-    public List<Object> operacionBD(
+    public List<Venta> operacionBD(
         @WebParam(name = "Operacion", targetNamespace = "")
         int operacion);
 

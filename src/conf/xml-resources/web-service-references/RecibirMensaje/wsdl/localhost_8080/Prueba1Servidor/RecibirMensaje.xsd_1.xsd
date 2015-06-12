@@ -20,7 +20,16 @@
 
 <xs:complexType name="OperacionBDResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:anyType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="return" type="tns:venta" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="venta">
+<xs:sequence>
+<xs:element name="cantidad" type="xs:string" minOccurs="0"/>
+<xs:element name="id_venta" type="xs:string" minOccurs="0"/>
+<xs:element name="precio" type="xs:string" minOccurs="0"/>
+<xs:element name="producto" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

@@ -5,10 +5,12 @@
  */
 package ConsultaServerBD;
 
+import Mesaje.Venta;
 import Mesaje.RecibirMensaje_Service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +26,7 @@ public class ConsultarVentasServidor extends HttpServlet {
     private RecibirMensaje_Service service;
 
     private final int operacion = 1;
-    private ArrayList<java.lang.Object> lista = null;
+    private List<Venta> lista = null;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,7 +34,7 @@ public class ConsultarVentasServidor extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
-            lista = (ArrayList<Object>) operacionBD(1);
+            lista = operacionBD(1);
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -102,7 +104,7 @@ public class ConsultarVentasServidor extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private java.util.List<java.lang.Object> operacionBD(int operacion) {
+    private java.util.List<Mesaje.Venta> operacionBD(int operacion) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         Mesaje.RecibirMensaje port = service.getRecibirMensajePort();
