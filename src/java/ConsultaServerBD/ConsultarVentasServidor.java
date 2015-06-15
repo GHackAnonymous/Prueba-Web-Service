@@ -7,6 +7,7 @@ package ConsultaServerBD;
 
 import Mesaje.Venta;
 import Mesaje.RecibirMensaje_Service;
+import Mesaje.Venta;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class ConsultarVentasServidor extends HttpServlet {
                     out.println("bucle vuelta: "+i+"<br>");
                     venta = (Venta) lista.get(i);
 
-                    out.println("<li>ID Venta: "+venta.getId_venta()+"</li><br>");
+                    out.println("<li>ID Venta: "+venta.getIdVenta()+"</li><br>");
                     out.println("<li>Producto: "+venta.getProducto()+"</li><br>");
                     out.println("<li>Precio: "+venta.getPrecio()+"</li><br>");
                     out.println("<li>Cantidad: "+venta.getCantidad()+"</li><br>");
@@ -63,6 +64,7 @@ public class ConsultarVentasServidor extends HttpServlet {
                     
                     total = total + totalProducto;
                 }
+                out.println("<h1>total: "+total+"</h1><br>");
                 out.println("</ul>");
                 
                 out.println("<h1>El total de todos los productos: "+total+"</h1><br>");
