@@ -64,7 +64,6 @@ public class ConsultarVentasServidor extends HttpServlet {
                     
                     total = total + totalProducto;
                 }
-                out.println("<h1>total: "+total+"</h1><br>");
                 out.println("</ul>");
                 
                 out.println("<h1>El total de todos los productos: "+total+"</h1><br>");
