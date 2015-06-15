@@ -27,6 +27,8 @@ public class ConsultarVentasServidor extends HttpServlet {
 
     private final int operacion = 1;
     private List<Venta> lista = null;
+    private int totalProducto = 0;
+    private int total = 0;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -55,10 +57,18 @@ public class ConsultarVentasServidor extends HttpServlet {
                     out.println("<li>Producto: "+venta.getProducto()+"</li><br>");
                     out.println("<li>Precio: "+venta.getPrecio()+"</li><br>");
                     out.println("<li>Cantidad: "+venta.getCantidad()+"</li><br>");
+                    
+                    totalProducto = Integer.parseInt(venta.getPrecio()) * Integer.parseInt(venta.getCantidad());
+                    out.println("<li>Total Por Producto: "+totalProducto+"</li><br>");
+                    
+                    total = total + totalProducto;
                 }
                 out.println("</ul>");
+                
+                out.println("<h1>El total de todos los productos: "+total+"</h1><br>");
+                
             }else{
-                out.println("No he podido optener los datos de ventas.");
+                out.println("<h1>No he podido optener los datos de ventas.</h1><br>");
             }
             out.println("</body>");
             out.println("</html>");
